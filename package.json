@@ -1,0 +1,38 @@
+{
+  "name": "mrigmareecha",
+  "version": "1.0.0",
+  "description": "Mrigmareecha monorepo — Next.js frontend + Node.js backend",
+  "private": true,
+  "workspaces": [
+    "packages/client",
+    "packages/api"
+  ],
+  "scripts": {
+    "dev:client": "npm run dev --workspace=client",
+    "dev:api": "npm run dev --workspace=api",
+    "lint": "lerna run lint --parallel",
+    "lint:fix": "lerna run lint:fix --parallel",
+    "build": "lerna run build",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9",
+    "lerna": "^8",
+    "lint-staged": "^15"
+  },
+  "lint-staged": {
+    "packages/frontend/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix"
+    ],
+    "packages/frontend/**/*.{ts,tsx,js,jsx,css,json,md}": [
+      "prettier --write"
+    ],
+    "packages/backend/**/*.{js,mjs,cjs,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
