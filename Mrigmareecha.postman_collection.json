@@ -1,0 +1,399 @@
+{
+  "info": {
+    "_postman_id": "a93b482f-2d93-4a11-b1e7-9a84f3e602e1",
+    "name": "Mrigmareecha Cyber Defense POC API",
+    "description": "Complete API Collection for Mrigmareecha AI-Powered Collective Cyber Defense. Compatible with both Postman and Bruno.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - Health & Vitals",
+      "item": [
+        {
+          "name": "1. Server Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            },
+            "description": "Returns backend uptime, engine status, and vital stats."
+          }
+        },
+        {
+          "name": "2. Root Platform Directory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": []
+            },
+            "description": "Welcome message and API endpoint directory."
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Honeypot Attack Simulator",
+      "item": [
+        {
+          "name": "3. List Simulator Scenarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/simulator/scenarios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "simulator", "scenarios"]
+            },
+            "description": "Lists all 4 pre-configured realistic attack scenarios."
+          }
+        },
+        {
+          "name": "4. Trigger SSH Honeypot Brute Force",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scenario_id\": \"ssh_brute_force\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/simulator/trigger",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "simulator", "trigger"]
+            },
+            "description": "Simulates external attacker scanning and brute-forcing OpenCanary SSH honeypot (port 2222)."
+          }
+        },
+        {
+          "name": "5. Trigger AWS Canarytoken Leak",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scenario_id\": \"canary_token_leak\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/simulator/trigger",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "simulator", "trigger"]
+            },
+            "description": "Simulates unauthorized external IP querying a seeded decoy AWS access token."
+          }
+        },
+        {
+          "name": "6. Trigger Decoy Redis Exploit Sweep",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scenario_id\": \"redis_unauth_probe\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/simulator/trigger",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "simulator", "trigger"]
+            },
+            "description": "Simulates unauthenticated remote command execution probe against decoy Redis port."
+          }
+        },
+        {
+          "name": "7. Trigger Web Decoy Traversal Probe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scenario_id\": \"web_path_traversal\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/simulator/trigger",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "simulator", "trigger"]
+            },
+            "description": "Simulates path traversal scanning (.env, /wp-admin, .git/config) against decoy web server."
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Deception Ingestion & Normalization",
+      "item": [
+        {
+          "name": "8. Get All Captured Events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "events"]
+            },
+            "description": "Returns all captured, normalized deception telemetry records with linked AI analysis."
+          }
+        },
+        {
+          "name": "9. Ingest OpenCanary Alert",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"src_host\": \"198.51.100.44\",\n  \"dst_port\": 2222,\n  \"logtype\": 2000,\n  \"node_id\": \"lab-ssh-honeypot-01\",\n  \"logdata\": {\n    \"USERNAME\": \"root\",\n    \"PASSWORD\": \"unauthorized-probe-2026\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/events/ingest",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "events", "ingest"]
+            },
+            "description": "Accepts raw OpenCanary telemetry, validates schema, masks passwords, normalizes, and runs AI triage."
+          }
+        },
+        {
+          "name": "10. Ingest Canarytoken Activation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"canarydrop\": \"canary-token-aws-sec-99\",\n  \"src_ip\": \"203.0.113.89\",\n  \"memo\": \"Decoy AWS access key planted in public staging repository\",\n  \"useragent\": \"aws-cli/2.15.0\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/events/ingest",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "events", "ingest"]
+            },
+            "description": "Accepts Thinkst Canarytokens webhook activation and triggers threat analysis."
+          }
+        },
+        {
+          "name": "11. Get Event Details by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/events/evt_demo_001",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "events", "evt_demo_001"]
+            },
+            "description": "Returns individual event record with full context, analysis, and linked rules."
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - AI Threat Triage",
+      "item": [
+        {
+          "name": "12. Get Threat Analysis by Event ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/analysis/evt_demo_001",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "analysis", "evt_demo_001"]
+            },
+            "description": "Retrieves the AI threat assessment showing Observed Facts vs Hypotheses, severity, confidence, and MITRE mapping."
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Governed Defensive Rules",
+      "item": [
+        {
+          "name": "13. Get All Defensive Rules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rules",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "rules"]
+            },
+            "description": "Lists all candidate and approved defensive detection rules (Suricata, Sigma, WAF, IPTables)."
+          }
+        },
+        {
+          "name": "14. Approve Candidate Rule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decision\": \"approve\",\n  \"reviewer\": \"analyst@mrigmareecha.sec\",\n  \"notes\": \"Approved for federated collective distribution.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rules/mr-decoy-connection-review/review",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "rules", "mr-decoy-connection-review", "review"]
+            },
+            "description": "Human-in-the-loop review: marks rule approved and publishes sanitized copy to collective network."
+          }
+        },
+        {
+          "name": "15. Reject Candidate Rule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decision\": \"reject\",\n  \"reviewer\": \"analyst@mrigmareecha.sec\",\n  \"notes\": \"Rejected - not applicable to current infrastructure.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rules/mr-decoy-connection-review/review",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "rules", "mr-decoy-connection-review", "review"]
+            },
+            "description": "Rejects a candidate rule, recording the reason in the audit trail."
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Collective Defense Ring",
+      "item": [
+        {
+          "name": "16. Get Collective Shared Rules Feed",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collective/feed",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "collective", "feed"]
+            },
+            "description": "Returns privacy-sanitized federated rules shared across opted-in organization nodes."
+          }
+        },
+        {
+          "name": "17. Adopt Rule in Peer Organization",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rule_id\": \"mr-sigma-canary-aws-shared\",\n  \"org\": \"Peer Organization B (Opt-in Subscriber)\",\n  \"mode\": \"monitoring_only\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/collective/adopt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "collective", "adopt"]
+            },
+            "description": "Simulates a peer organization adopting a federated rule in non-enforcing monitoring mode."
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Cryptographic Evidence & Tamper Audit",
+      "item": [
+        {
+          "name": "18. Get Audit Trail Ledger Blocks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/evidence/audit",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "evidence", "audit"]
+            },
+            "description": "Returns sequential SHA-256 hash-chain audit ledger blocks from genesis to latest."
+          }
+        },
+        {
+          "name": "19. Verify Hash Chain Mathematical Integrity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/evidence/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "evidence", "verify"]
+            },
+            "description": "Recalculates all SHA-256 digests across the entire chain to mathematically prove zero tampering."
+          }
+        },
+        {
+          "name": "20. Export Signed Incident Evidence Bundle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/evidence/export?event_id=evt_demo_001",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "evidence", "export"],
+              "query": [
+                {
+                  "key": "event_id",
+                  "value": "evt_demo_001"
+                }
+              ]
+            },
+            "description": "Exports complete signed JSON forensic evidence bundle containing RFC 8785 canonical manifest."
+          }
+        }
+      ]
+    }
+  ]
+}

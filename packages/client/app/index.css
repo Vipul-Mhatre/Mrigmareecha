@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MRIGMAREECHA DESIGN SYSTEM TOKENS (index.css)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── 1. COLOR TOKENS (Standard Color Names from colourname.com) ── */
+  --color-nyctophobia: #030B18;           /* Canvas Base Background */
+  --color-kuretake-black: #031021;        /* Sidebar Surface */
+  --color-mirage-black: #041021;          /* Top Header Surface */
+  --color-abyssal-void: #041225;          /* Workspace Inner Surface */
+  --color-trapped-darkness: #06152A;      /* Inputs & Metadata Strips */
+  --color-space-cadet: #06162A;           /* Primary Container / Card Surface */
+  --color-denim-shadow: #091D34;          /* Secondary Card / Active Row Surface */
+  --color-rhapsody-blue: #0D2745;         /* Hover State Surface */
+  --color-raven-sheen: #102943;           /* Fine Divider Line */
+  --color-incremental-blue: #123454;      /* Standard Structural Border */
+  --color-cleos-bath: #18517D;            /* Strong Interactive / Focus Border */
+  --color-hadfield-blue: #1677FF;         /* Brand Primary Blue Action */
+  --color-pool-water: #248BFF;            /* Luminous Bright Blue Accent */
+  --color-shovel-knight: #20C8FF;         /* Electric Cyan Brand Highlight */
+  --color-athena-blue: #7BDFFF;           /* Soft Highlight Cyan */
+  --color-hello-summer: #48B8FF;          /* Link & Interactive Text Blue */
+  --color-glitter-lake: #31B8FF;          /* Info Metric Blue */
+  --color-channel-marker: #12D6B0;        /* Deep Teal Accent */
+  --color-caribbean-green: #16D6A0;       /* Severity Low / Verified Success */
+  --color-mandarin-sorbet: #FFAD42;       /* Severity Medium / Warning Amber */
+  --color-sweet-watermelon: #FF5268;      /* Severity High / Threat Alert Red */
+  --color-electric-amethyst: #9966FF;     /* AI Analysis / Hypotheses Violet */
+  --color-jacaranda-pink: #C05BFF;        /* Analytics Magenta / Purple */
+  --color-soft-periwinkle: #A58AFF;       /* Status Pending / Triage Purple */
+  --color-yellow-currant: #F4C46A;        /* Mythic Golden Deer Artwork Accent */
+  --color-cotton-boll: #EAF2FF;           /* Primary High-Contrast Text */
+  --color-september-aster: #A8BEDD;       /* Secondary Body Text */
+  --color-jay-wing: #7790B3;              /* Muted Meta & Label Text */
+  --color-luxe-blue: #4F6685;             /* Disabled Text & Subtle Elements */
+
+  /* ── 2. STATIC SIZES & DIMENSIONS ── */
+  --header-height: 68px;
+  --sidebar-width: 228px;
+  --sidebar-drawer-width: 270px;
+  --inspector-width: 400px;
+  --inspector-drawer-max-width: 420px;
+  --search-bar-max-width: 480px;
+  --modal-max-width: 576px;
+  --hero-card-min-height: 120px;
+  --metric-card-height: 96px;
+  --chart-plot-height: 155px;
+  --donut-chart-size: 125px;
+  --table-row-height: 36px;
+}
+
+:root {
+  /* ── SEMANTIC CSS PROPERTY MAP ── */
+  --canvas: var(--color-nyctophobia);
+  --header: var(--color-mirage-black);
+  --sidebar: var(--color-kuretake-black);
+  --workspace: var(--color-abyssal-void);
+  --surface-1: var(--color-space-cadet);
+  --surface-2: var(--color-denim-shadow);
+  --hover-surface: var(--color-rhapsody-blue);
+  --input-surface: var(--color-trapped-darkness);
+
+  --primary-blue: var(--color-hadfield-blue);
+  --bright-blue: var(--color-pool-water);
+  --electric-cyan: var(--color-shovel-knight);
+  --soft-cyan: var(--color-athena-blue);
+  --teal-accent: var(--color-channel-marker);
+  --violet-accent: var(--color-electric-amethyst);
+  --purple-accent: var(--color-jacaranda-pink);
+  --golden-deer: var(--color-yellow-currant);
+
+  --text-primary: var(--color-cotton-boll);
+  --text-secondary: var(--color-september-aster);
+  --text-muted: var(--color-jay-wing);
+  --text-disabled: var(--color-luxe-blue);
+  --text-link: var(--color-hello-summer);
+
+  --border-standard: var(--color-incremental-blue);
+  --border-strong: var(--color-cleos-bath);
+  --border-divider: var(--color-raven-sheen);
+
+  --severity-high: var(--color-sweet-watermelon);
+  --severity-medium: var(--color-mandarin-sorbet);
+  --severity-low: var(--color-caribbean-green);
+  --severity-info: var(--color-glitter-lake);
+  --severity-pending: var(--color-soft-periwinkle);
+
+  /* Spacing Tokens */
+  --spacing-2xs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-base: 10px;
+  --spacing-lg: 12px;
+  --spacing-xl: 14px;
+  --spacing-2xl: 16px;
+  --spacing-3xl: 20px;
+  --spacing-4xl: 24px;
+
+  /* Border Radii Tokens */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-full: 9999px;
+
+  /* Typography Tokens */
+  --font-family-global: var(--font-poppins), 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-2xs: 9px;
+  --font-size-xs-subtle: 10px;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 13.5px;
+  --font-size-md: 15px;
+  --font-size-lg: 17px;
+  --font-size-xl: 22px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 25px;
+
+  /* Shadows & Glow Tokens */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-overlay: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+  --glow-cyan-subtle: 0 0 8px rgba(32, 200, 255, 0.4);
+  --glow-cyan-vibrant: 0 0 16px rgba(32, 200, 255, 0.45);
+  --glow-blue-primary: 0 0 12px rgba(22, 119, 255, 0.35);
+  --glow-green-success: 0 0 8px #16D6A0;
+
+  /* Z-Index Layers */
+  --z-base: 0;
+  --z-pinned-chart: 10;
+  --z-header: 30;
+  --z-drawer: 50;
+  --z-modal: 50;
+  --z-toast: 50;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GLOBAL FONT POPPINS & ELEMENT NORMALIZATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after, html, body, input, button, select, textarea, code, pre, p, span, div, h1, h2, h3, h4, h5, h6, table, th, td, label {
+  font-family: var(--font-family-global) !important;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--text-primary);
+  font-family: var(--font-family-global) !important;
+}
+
+.font-heading, .font-code, .font-mono {
+  font-family: var(--font-family-global) !important;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-standard);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Hide Next.js dev badge overlay */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-dev-indicator],
+[data-next-badge] {
+  display: none !important;
+}

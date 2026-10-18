@@ -10,6 +10,7 @@
   "scripts": {
     "dev:client": "npm run dev --workspace=client",
     "dev:api": "npm run dev --workspace=api",
+    "test:api": "node -e \"const store = require('./packages/api/src/store'); console.log('Audit chain length:', store.auditTrail.chain.length); console.log(store.auditTrail.verifyIntegrity());\"",
     "lint": "lerna run lint --parallel",
     "lint:fix": "lerna run lint:fix --parallel",
     "build": "lerna run build",
@@ -21,14 +22,11 @@
     "lint-staged": "^15"
   },
   "lint-staged": {
-    "packages/frontend/**/*.{ts,tsx,js,jsx}": [
-      "eslint --fix"
+    "packages/client/**/*.{ts,tsx,js,jsx}": [
+      "npm run lint:fix --workspace=client --"
     ],
-    "packages/frontend/**/*.{ts,tsx,js,jsx,css,json,md}": [
-      "prettier --write"
-    ],
-    "packages/backend/**/*.{js,mjs,cjs,json,md}": [
-      "prettier --write"
+    "packages/api/**/*.{js,mjs,cjs,json}": [
+      "npm run lint:fix --workspace=api --"
     ]
   },
   "engines": {
